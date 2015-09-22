@@ -1,9 +1,13 @@
 package me.taiwei.zaku;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import me.taiwei.zaku.retrofit.RetrofitActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +37,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onRetrofit(View v) {
+        startActivity(new Intent(this, RetrofitActivity.class));
     }
 }
