@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import me.taiwei.zaku.retrofit.RetrofitActivity;
+import me.taiwei.zaku.volley.VolleyActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,5 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRetrofit(View v) {
         startActivity(new Intent(this, RetrofitActivity.class));
+    }
+    public void onVolley(View v) {
+        startActivity(new Intent(this, VolleyActivity.class));
     }
 }

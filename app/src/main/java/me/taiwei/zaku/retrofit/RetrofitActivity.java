@@ -7,6 +7,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.taiwei.zaku.R;
+import me.taiwei.zaku.retrofit.api.V2exApi;
+import me.taiwei.zaku.retrofit.model.HotTopicModel;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;

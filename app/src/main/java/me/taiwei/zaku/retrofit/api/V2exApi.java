@@ -1,7 +1,8 @@
-package me.taiwei.zaku.retrofit;
+package me.taiwei.zaku.retrofit.api;
 
 import java.util.List;
 
+import me.taiwei.zaku.retrofit.model.HotTopicModel;
 import retrofit.Callback;
 import retrofit.http.GET;
 

@@ -20,6 +20,8 @@
         </activity>
 
         <activity android:name=".retrofit.RetrofitActivity" />
+
+        <activity android:name=".volley.VolleyActivity" />
     </application>
 
 </manifest>
