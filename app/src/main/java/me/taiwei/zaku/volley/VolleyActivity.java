@@ -3,19 +3,20 @@ package me.taiwei.zaku.volley;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
-import java.util.List;
-
 import me.taiwei.zaku.R;
 import me.taiwei.zaku.volley.api.V2exApi;
-import me.taiwei.zaku.volley.model.HotTopicModel;
+import me.taiwei.zaku.volley.model.UserModel;
 
 /**
  * Created by taiwei on 15/9/22.
  */
 public class VolleyActivity extends AppCompatActivity {
+
+    long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +25,21 @@ public class VolleyActivity extends AppCompatActivity {
 
         VolleyManager.initialize(this);
 
-        V2exApi.getHotTopics(new ResponseListener<List<HotTopicModel>>() {
+        startTime = System.currentTimeMillis();
+        V2exApi.getUser(new ResponseListener<UserModel>() {
             @Override
-            public void onResponse(List<HotTopicModel> response) {
+            public void onResponse(UserModel response) {
 
-                HotTopicModel hotTopicModel = response.get(0);
+                long endTime = System.currentTimeMillis();
+                Toast.makeText(VolleyActivity.this, String.valueOf(endTime - startTime), Toast.LENGTH_LONG).show();
 
-                ((TextView) findViewById(R.id.id)).setText(String.valueOf(hotTopicModel.getId()));
-                ((TextView)findViewById(R.id.title)).setText(hotTopicModel.getTitle());
-                ((TextView)findViewById(R.id.url)).setText(hotTopicModel.getUrl());
-                ((TextView)findViewById(R.id.content)).setText(hotTopicModel.getContent());
-                ((TextView)findViewById(R.id.replies)).setText(String.valueOf(hotTopicModel.getReplies()));
+                ((TextView) findViewById(R.id.id)).setText(String.valueOf(response.getId()));
+                ((TextView) findViewById(R.id.title)).setText(response.getUsername());
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                System.out.println(error.toString());
             }
         });
     }
