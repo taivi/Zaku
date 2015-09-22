@@ -36,11 +36,6 @@ build/
 *.class
 
 
-# Generated files
-antLauncher/bin
-antLauncher/gen
-
-
 # Local configuration file (sdk path, etc)
 local.properties
 
