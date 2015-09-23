@@ -1,4 +1,4 @@
-package me.taiwei.zaku.volley.model;
+package me.taiwei.zaku.model;
 
 /**
  * Created by taiwei on 15/9/22.

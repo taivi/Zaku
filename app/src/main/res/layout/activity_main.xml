@@ -12,16 +12,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="retrofit"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="onRetrofit"/>
+        android:layout_gravity="center_horizontal"
+        android:onClick="onRetrofit"
+        android:text="retrofit"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="volley"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="onVolley"/>
+        android:layout_gravity="center_horizontal"
+        android:onClick="onVolley"
+        android:text="volley"/>
 
 </LinearLayout>

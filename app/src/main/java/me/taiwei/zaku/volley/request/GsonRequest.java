@@ -7,8 +7,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 
-import me.taiwei.zaku.volley.GsonUtils;
-import me.taiwei.zaku.volley.ResponseListener;
+import me.taiwei.zaku.volley.utils.GsonUtils;
+import me.taiwei.zaku.volley.utils.ResponseListener;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;

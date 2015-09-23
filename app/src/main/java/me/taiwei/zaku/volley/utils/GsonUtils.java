@@ -1,4 +1,4 @@
-package me.taiwei.zaku.volley;
+package me.taiwei.zaku.volley.utils;
 
 import android.text.TextUtils;
 

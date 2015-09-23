@@ -1,9 +1,9 @@
 package me.taiwei.zaku.volley.api;
 
-import me.taiwei.zaku.volley.ResponseListener;
-import me.taiwei.zaku.volley.VolleyManager;
-import me.taiwei.zaku.volley.model.HotTopicModel;
-import me.taiwei.zaku.volley.model.UserModel;
+import me.taiwei.zaku.model.HotTopicModel;
+import me.taiwei.zaku.model.UserModel;
+import me.taiwei.zaku.volley.utils.ResponseListener;
+import me.taiwei.zaku.volley.utils.VolleyManager;
 import me.taiwei.zaku.volley.request.GetGsonRequest;
 
 /**
@@ -13,15 +13,16 @@ public class V2exApi {
 
     private static final String url_hot_topics = "https://www.v2ex.com/api/topics/hot.json";
 
-    private static final String url_user = "https://www.v2ex.com/api/members/show.json?username=Livid";
+    private static final String url_user = "https://www.v2ex.com/api/members/show.json";
 
     public static void getHotTopics(ResponseListener listener) {
-        GetGsonRequest request = new GetGsonRequest(url_hot_topics, listener, HotTopicModel.class);
+        GetGsonRequest request = new GetGsonRequest(url_hot_topics, listener, HotTopicModel[].class);
         VolleyManager.getInstance().getRequestQueue().add(request);
     }
 
-    public static void getUser(ResponseListener listener) {
-        GetGsonRequest request = new GetGsonRequest(url_user, listener, UserModel.class);
+    public static void getUser(String username, ResponseListener listener) {
+        String url = url_user + "?username=" + username;
+        GetGsonRequest request = new GetGsonRequest(url, listener, UserModel.class);
         VolleyManager.getInstance().getRequestQueue().add(request);
     }
 }

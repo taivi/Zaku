@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import me.taiwei.zaku.R;
+import me.taiwei.zaku.model.HotTopicModel;
+import me.taiwei.zaku.model.UserModel;
 import me.taiwei.zaku.retrofit.api.V2exApi;
-import me.taiwei.zaku.retrofit.model.UserModel;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -20,52 +23,61 @@ public class RetrofitActivity extends AppCompatActivity {
 
     long startTime;
 
-    String BASE_URL_V2EX = "https://www.v2ex.com";
-
-    String BASE_URL_GITHUB = "https://api.github.com";
+    String BASE_URL = "https://www.v2ex.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retrofit);
+        setContentView(R.layout.activity_test);
 
-//        RestAdapter adapter = new RestAdapter.Builder().setEndpoint(BASE_URL_V2EX).build();
-//
-//        V2exApi v2exApi = adapter.create(V2exApi.class);
-//        v2exApi.getHotTopics(new Callback<List<HotTopicModel>>() {
-//            @Override
-//            public void success(List<HotTopicModel> hotTopicModels, Response response) {
-//                HotTopicModel hotTopicModel = hotTopicModels.get(0);
-//                ((TextView) findViewById(R.id.id)).setText(String.valueOf(hotTopicModel.getId()));
-//                ((TextView)findViewById(R.id.title)).setText(hotTopicModel.getTitle());
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//
-//            }
-//        });
-
-        RestAdapter adapter = new RestAdapter.Builder().setEndpoint(BASE_URL_V2EX).build();
-
+        RestAdapter adapter = new RestAdapter.Builder().setEndpoint(BASE_URL).build();
         V2exApi v2exApi = adapter.create(V2exApi.class);
 
         startTime = System.currentTimeMillis();
-        v2exApi.getUser("Livid", new Callback<UserModel>() {
+
+//        testObjectData(v2exApi);
+        testListData(v2exApi);
+    }
+
+    private void testObjectData(V2exApi v2exApi){
+        v2exApi.getUser("Livid",
+                new Callback<UserModel>() {
+                    @Override
+                    public void success(UserModel userModel, Response response) {
+
+                        showCostTime();
+
+                        ((TextView) findViewById(R.id.text1)).setText(String.valueOf(userModel.getId()));
+                        ((TextView) findViewById(R.id.text2)).setText(userModel.getUsername());
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        System.out.println(error.toString());
+                    }
+                });
+    }
+
+    private void testListData(V2exApi v2exApi){
+        v2exApi.getHotTopics(new Callback<List<HotTopicModel>>() {
             @Override
-            public void success(UserModel userModel, Response response) {
+            public void success(List<HotTopicModel> hotTopicModels, Response response) {
 
-                long endTime = System.currentTimeMillis();
-                Toast.makeText(RetrofitActivity.this, String.valueOf(endTime - startTime), Toast.LENGTH_LONG).show();
+                showCostTime();
 
-                ((TextView) findViewById(R.id.id)).setText(String.valueOf(userModel.getId()));
-                ((TextView) findViewById(R.id.title)).setText(userModel.getUsername());
+                ((TextView) findViewById(R.id.text1)).setText(String.valueOf(hotTopicModels.get(0).getId()));
+                ((TextView)findViewById(R.id.text2)).setText(hotTopicModels.get(0).getTitle());
             }
 
             @Override
             public void failure(RetrofitError error) {
-                System.out.println(error.toString());
+
             }
         });
+    }
+
+    private void showCostTime() {
+        long endTime = System.currentTimeMillis();
+        Toast.makeText(RetrofitActivity.this, String.valueOf(endTime - startTime), Toast.LENGTH_LONG).show();
     }
 }
