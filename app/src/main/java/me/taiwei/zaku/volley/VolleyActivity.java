@@ -30,8 +30,8 @@ public class VolleyActivity extends AppCompatActivity {
 
         startTime = System.currentTimeMillis();
 
-//        testObjectData();
-        testListData();
+        testObjectData();
+//        testListData();
     }
 
     private void testObjectData() {

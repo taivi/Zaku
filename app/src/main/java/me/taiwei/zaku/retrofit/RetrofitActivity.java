@@ -35,8 +35,8 @@ public class RetrofitActivity extends AppCompatActivity {
 
         startTime = System.currentTimeMillis();
 
-//        testObjectData(v2exApi);
-        testListData(v2exApi);
+        testObjectData(v2exApi);
+//        testListData(v2exApi);
     }
 
     private void testObjectData(V2exApi v2exApi){
