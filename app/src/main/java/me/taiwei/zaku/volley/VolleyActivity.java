@@ -35,7 +35,7 @@ public class VolleyActivity extends AppCompatActivity {
     }
 
     private void testObjectData() {
-        V2exApi.getUser("Livid", new ResponseListener<UserModel>() {
+        V2exApi.getUser(1, new ResponseListener<UserModel>() {
             @Override
             public void onResponse(UserModel response) {
 
@@ -74,7 +74,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     private void testMultiData() {
         for(int i = 0; i < 10; i++){
-            V2exApi.getUser("Livid", new ResponseListener<HotTopicModel[]>() {
+            V2exApi.getUser(1, new ResponseListener<HotTopicModel[]>() {
 
                 @Override
                 public void onResponse(HotTopicModel[] response) {

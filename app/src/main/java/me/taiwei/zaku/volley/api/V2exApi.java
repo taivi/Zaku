@@ -20,8 +20,8 @@ public class V2exApi {
         VolleyManager.getInstance().getRequestQueue().add(request);
     }
 
-    public static void getUser(String username, ResponseListener listener) {
-        String url = url_user + "?username=" + username;
+    public static void getUser(int id, ResponseListener listener) {
+        String url = url_user + "?id=" + id;
         GetGsonRequest request = new GetGsonRequest(url, listener, UserModel.class);
         VolleyManager.getInstance().getRequestQueue().add(request);
     }

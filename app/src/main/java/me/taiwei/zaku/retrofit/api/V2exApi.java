@@ -17,5 +17,5 @@ public interface V2exApi {
     void getHotTopics(Callback<List<HotTopicModel>> callback);
 
     @GET("/api/members/show.json")
-    void getUser(@Query("username") String username, Callback<UserModel> callback);
+    void getUser(@Query("id") int id, Callback<UserModel> callback);
 }

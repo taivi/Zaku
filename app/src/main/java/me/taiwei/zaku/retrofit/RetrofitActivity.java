@@ -40,7 +40,7 @@ public class RetrofitActivity extends AppCompatActivity {
     }
 
     private void testObjectData(V2exApi v2exApi){
-        v2exApi.getUser("Livid",
+        v2exApi.getUser(1,
                 new Callback<UserModel>() {
                     @Override
                     public void success(UserModel userModel, Response response) {
