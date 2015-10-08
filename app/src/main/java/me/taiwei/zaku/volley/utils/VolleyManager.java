@@ -1,8 +1,6 @@
 package me.taiwei.zaku.volley.utils;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 
 import com.android.volley.Network;
 import com.android.volley.RequestQueue;
@@ -38,15 +36,6 @@ public class VolleyManager {
     private VolleyManager(Context context) {
 
         File cacheDir = new File(context.getCacheDir(), DEFAULT_CACHE_DIR);
-
-        String userAgent = "volley/0";
-        try {
-            String packageName = context.getPackageName();
-            PackageInfo info = context.getPackageManager().getPackageInfo(packageName, 0);
-            userAgent = packageName + "/" + info.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
 
         HttpStack stack = new HurlStack();
         Network network = new BasicNetwork(stack);
