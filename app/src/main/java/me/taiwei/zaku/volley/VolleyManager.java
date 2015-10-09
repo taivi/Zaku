@@ -1,4 +1,4 @@
-package me.taiwei.zaku.volley.utils;
+package me.taiwei.zaku.volley;
 
 import android.content.Context;
 

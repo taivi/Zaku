@@ -10,9 +10,8 @@ import com.android.volley.VolleyError;
 import me.taiwei.zaku.R;
 import me.taiwei.zaku.model.HotTopicModel;
 import me.taiwei.zaku.model.UserModel;
-import me.taiwei.zaku.volley.api.V2exApi;
+import me.taiwei.zaku.volley.api.VolleyApi;
 import me.taiwei.zaku.volley.utils.ResponseListener;
-import me.taiwei.zaku.volley.utils.VolleyManager;
 
 /**
  * Created by taiwei on 15/9/22.
@@ -35,7 +34,7 @@ public class VolleyActivity extends AppCompatActivity {
     }
 
     private void testObjectData() {
-        V2exApi.getUser(1, new ResponseListener<UserModel>() {
+        VolleyApi.getUser(1, new ResponseListener<UserModel>() {
             @Override
             public void onResponse(UserModel response) {
 
@@ -54,7 +53,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     private void testListData() {
 
-        V2exApi.getHotTopics(new ResponseListener<HotTopicModel[]>() {
+        VolleyApi.getHotTopics(new ResponseListener<HotTopicModel[]>() {
 
             @Override
             public void onResponse(HotTopicModel[] response) {
@@ -74,7 +73,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     private void testMultiData() {
         for(int i = 0; i < 10; i++){
-            V2exApi.getUser(1, new ResponseListener<HotTopicModel[]>() {
+            VolleyApi.getUser(1, new ResponseListener<HotTopicModel[]>() {
 
                 @Override
                 public void onResponse(HotTopicModel[] response) {

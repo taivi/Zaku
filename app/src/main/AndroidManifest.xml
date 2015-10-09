@@ -22,6 +22,10 @@
         <activity android:name=".retrofit.RetrofitActivity" />
 
         <activity android:name=".volley.VolleyActivity" />
+
+        <activity android:name=".race.NetworkRaceActivity" />
+
+        <activity android:name=".race.HttpRaceActivity" />
     </application>
 
 </manifest>

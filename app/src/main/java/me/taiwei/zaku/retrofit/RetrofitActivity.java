@@ -10,7 +10,7 @@ import java.util.List;
 import me.taiwei.zaku.R;
 import me.taiwei.zaku.model.HotTopicModel;
 import me.taiwei.zaku.model.UserModel;
-import me.taiwei.zaku.retrofit.api.V2exApi;
+import me.taiwei.zaku.retrofit.api.RetrofitApi;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -31,7 +31,7 @@ public class RetrofitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         RestAdapter adapter = new RestAdapter.Builder().setEndpoint(BASE_URL).build();
-        V2exApi v2exApi = adapter.create(V2exApi.class);
+        RetrofitApi v2exApi = adapter.create(RetrofitApi.class);
 
         startTime = System.currentTimeMillis();
 
@@ -39,7 +39,7 @@ public class RetrofitActivity extends AppCompatActivity {
 //        testListData(v2exApi);
     }
 
-    private void testObjectData(V2exApi v2exApi){
+    private void testObjectData(RetrofitApi v2exApi){
         v2exApi.getUser(1,
                 new Callback<UserModel>() {
                     @Override
@@ -58,7 +58,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
     }
 
-    private void testListData(V2exApi v2exApi){
+    private void testListData(RetrofitApi v2exApi){
         v2exApi.getHotTopics(new Callback<List<HotTopicModel>>() {
             @Override
             public void success(List<HotTopicModel> hotTopicModels, Response response) {

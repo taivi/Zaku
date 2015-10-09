@@ -3,13 +3,13 @@ package me.taiwei.zaku.volley.api;
 import me.taiwei.zaku.model.HotTopicModel;
 import me.taiwei.zaku.model.UserModel;
 import me.taiwei.zaku.volley.utils.ResponseListener;
-import me.taiwei.zaku.volley.utils.VolleyManager;
+import me.taiwei.zaku.volley.VolleyManager;
 import me.taiwei.zaku.volley.request.GetGsonRequest;
 
 /**
  * Created by taiwei on 15/9/22.
  */
-public class V2exApi {
+public class VolleyApi {
 
     private static final String url_hot_topics = "https://www.v2ex.com/api/topics/hot.json";
 

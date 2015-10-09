@@ -11,7 +11,7 @@ import retrofit.http.Query;
 /**
  * Created by taiwei on 15/9/22.
  */
-public interface V2exApi {
+public interface RetrofitApi {
 
     @GET("/api/topics/hot.json")
     void getHotTopics(Callback<List<HotTopicModel>> callback);
