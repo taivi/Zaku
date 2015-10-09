@@ -2,6 +2,7 @@ package me.taiwei.zaku.volley.api;
 
 import me.taiwei.zaku.model.HotTopicModel;
 import me.taiwei.zaku.model.UserModel;
+import me.taiwei.zaku.volley.adapter.VolleyAdapter;
 import me.taiwei.zaku.volley.utils.ResponseListener;
 import me.taiwei.zaku.volley.VolleyManager;
 import me.taiwei.zaku.volley.request.GetGsonRequest;
@@ -24,5 +25,11 @@ public class VolleyApi {
         String url = url_user + "?id=" + id;
         GetGsonRequest request = new GetGsonRequest(url, listener, UserModel.class);
         VolleyManager.getInstance().getRequestQueue().add(request);
+    }
+
+    public static void getUserByOkHttp(int id, ResponseListener listener) {
+        String url = url_user + "?id=" + id;
+        GetGsonRequest request = new GetGsonRequest(url, listener, UserModel.class);
+        VolleyAdapter.addRequest(request);
     }
 }

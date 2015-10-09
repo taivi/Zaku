@@ -26,10 +26,8 @@ import retrofit.client.Response;
  */
 public class NetworkRaceActivity extends AppCompatActivity {
 
-    private TextView mVolleySerialResult;
-    private TextView mVolleyParallelResult;
-    private TextView mRetrofitSerialResult;
-    private TextView mRetrofitParallelResult;
+    private TextView mVolleyResult;
+    private TextView mRetrofitResult;
 
     private RetrofitApi mRetrofitApi;
 
@@ -40,10 +38,8 @@ public class NetworkRaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_race_network);
 
-        mVolleySerialResult = (TextView) findViewById(R.id.volley_serial_result);
-        mVolleyParallelResult = (TextView) findViewById(R.id.volley_parallel_result);
-        mRetrofitSerialResult = (TextView) findViewById(R.id.retrofit_serial_result);
-        mRetrofitParallelResult = (TextView) findViewById(R.id.retrofit_parallel_result);
+        mVolleyResult = (TextView) findViewById(R.id.volley_result);
+        mRetrofitResult = (TextView) findViewById(R.id.retrofit_result);
 
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(BASE_URL).build();
         mRetrofitApi = restAdapter.create(RetrofitApi.class);
@@ -51,42 +47,31 @@ public class NetworkRaceActivity extends AppCompatActivity {
         VolleyManager.initialize(this);
     }
 
-    /**
-     * Volley串行
-     * @param v
-     */
-    public void onVolleySerial(View v) {
-        final long startTime = System.currentTimeMillis();
+    public void onRequest(View v) {
+        volleyRequest();
+        retrofitRequest();
     }
 
-    /**
-     * Volley并行
-     * @param v
-     */
-    public void onVolleyParallel(View v) {
+    public void volleyRequest() {
         final long startTime = System.currentTimeMillis();
 
         for(int i = 1; i < 10; i++) {
             VolleyApi.getUser(i, new ResponseListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(NetworkRaceActivity.this, "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NetworkRaceActivity.this, "Volley Error ", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onResponse(Object response) {
                     long endTime = System.currentTimeMillis();
-                    mVolleyParallelResult.setText(String.valueOf(endTime - startTime));
+                    mVolleyResult.setText(String.valueOf(endTime - startTime));
                 }
             });
         }
     }
 
-    public void onRetrofitSerial(View v) {
-
-    }
-
-    public void onRetrofitParallel(View v) {
+    public void retrofitRequest() {
         final long startTime = System.currentTimeMillis();
 
         for(int i = 1; i < 10; i++) {
@@ -94,12 +79,12 @@ public class NetworkRaceActivity extends AppCompatActivity {
                 @Override
                 public void success(UserModel userModel, Response response) {
                     long endTime = System.currentTimeMillis();
-                    mRetrofitParallelResult.setText(String.valueOf(endTime - startTime));
+                    mRetrofitResult.setText(String.valueOf(endTime - startTime));
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-
+                    Toast.makeText(NetworkRaceActivity.this, "Retrofit Error ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
